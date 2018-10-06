@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
 import { Switch, Route } from 'react-router'
 import Main from './pages/Main'
