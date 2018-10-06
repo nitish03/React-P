@@ -10,7 +10,9 @@ class Main extends Component {
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-        <BookShelf/>
+        <BookShelf title='Currently Reading'/>
+        <BookShelf title='Want to Read'/>
+        <BookShelf title='Read'/>
         </div>
         <More/>
       </div>
