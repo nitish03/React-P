@@ -5,11 +5,19 @@ import * as BooksAPI from '../BooksAPI'
 
 class Main extends Component {
 
-//get all books from BooksAPI 
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: []
+    }
+  }
+
+//get all books from BooksAPI
   componentDidMount() {
     BooksAPI.getAll()
     .then(books => {
       console.log(books);
+      this.setState({ books });
     });
   }
 
