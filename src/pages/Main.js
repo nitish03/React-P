@@ -29,10 +29,10 @@ class Main extends Component {
         </div>
         <div className="list-books-content">
 
-        {/* Books Titles */}
-        <BookShelf title='Currently Reading'/>
-        <BookShelf title='Want to Read'/>
-        <BookShelf title='Read'/>
+        {/* Books Titles and filter books from shelf */}
+        <BookShelf title='Currently Reading' books = {this.state.books.filter(bk=> bk.shelf === 'Currently Reading')} />
+        <BookShelf title='Want To Read' books = {this.state.books.filter(bk => bk.shelf === 'Want To Read')} />
+        <BookShelf title='Read' books = {this.state.books.filter(bk => bk.shelf === 'Read')} />
         </div>
         <More/>
       </div>
