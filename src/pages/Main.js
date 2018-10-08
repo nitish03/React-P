@@ -8,16 +8,30 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      allBooks: {
+        read: [],
+      currentlyReading: [],
+      wantToRead: []
+      }
     }
   }
 
 //get all books from BooksAPI
-  componentDidMount() {
+  componentDidMount(){
     BooksAPI.getAll()
     .then(books => {
-      console.log(books);
-      this.setState({ books });
+      const allBooks = {
+        read: [],
+        currentlyReading: [],
+        wantToRead: []
+      };
+
+      for (let book in books) {
+        // Pushes all default, cached, and updated books to their respective object-nested arrays.
+        allBooks[books[book].shelf].push(books[book]);
+        console.log(allBooks);
+      }
+      this.setState({ allBooks });
     });
   }
 
@@ -30,9 +44,9 @@ class Main extends Component {
         <div className="list-books-content">
 
         {/* Books Titles and filter books from shelf */}
-        <BookShelf title='Currently Reading' books = {this.state.books.filter(bk=> bk.shelf === 'Currently Reading')} />
-        <BookShelf title='Want To Read' books = {this.state.books.filter(bk => bk.shelf === 'Want To Read')} />
-        <BookShelf title='Read' books = {this.state.books.filter(bk => bk.shelf === 'Read')} />
+        <BookShelf title='Currently Reading' books = {this.state.allBooks.currentlyReading} />
+        <BookShelf title='Want To Read' books = {this.state.allBooks.wantToRead} />
+        <BookShelf title='Read' books = {this.state.allBooks.read} />
         </div>
         <More/>
       </div>
