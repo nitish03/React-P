@@ -35,6 +35,14 @@ class Main extends Component {
     });
   }
 
+  updateShelf = (book, shelf) => {
+    book.shelf = shelf;
+    this.setState((state) => ({
+      allBooks: state.allBooks.filter((b) => b.id !== book.id).concat([book])
+    }));
+    BooksAPI.update(book, shelf);
+  }
+
   render() {
     return(
       <div className="list-books">
@@ -44,9 +52,9 @@ class Main extends Component {
         <div className="list-books-content">
 
         {/* Books Titles and filter books from shelf */}
-        <BookShelf title='Currently Reading' books = {this.state.allBooks.currentlyReading} />
-        <BookShelf title='Want To Read' books = {this.state.allBooks.wantToRead} />
-        <BookShelf title='Read' books = {this.state.allBooks.read} />
+        <BookShelf updateShelf = {this.updateShelf} title='Currently Reading' books = {this.state.allBooks.currentlyReading} />
+        <BookShelf updateShelf = {this.updateShelf} title='Want To Read' books = {this.state.allBooks.wantToRead} />
+        <BookShelf updateShelf = {this.updateShelf} title='Read' books = {this.state.allBooks.read} />
         </div>
         <More/>
       </div>
